@@ -1,31 +1,37 @@
 fileFormatVersion: 2
-guid: 6e3eb27b88224eb4ba501d1fb67a3214
+guid: e01f202c81cb03d4da8943b0113e64d4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4685879807059564699
-    second: Template Tile Set_Square
+      213: 3577252072171977909
+    second: Walking_0
   - first:
-      213: 1584210725691664317
-    second: Template Tile Set_LowSlopeLA
+      213: -8287159642771018103
+    second: Walking_1
   - first:
-      213: 3768395346159885558
-    second: Template Tile Set_LowSlopeRA
+      213: -899620374153902453
+    second: Walking_2
   - first:
-      213: 675571577679527436
-    second: Template Tile Set_LowSlopeLB
+      213: -1539013491861331121
+    second: Walking_3
   - first:
-      213: 8281137726308822117
-    second: Template Tile Set_LowSlopeRB
+      213: -6138027735779490592
+    second: Walking_4
   - first:
-      213: -8785987596065433606
-    second: Template Tile Set_HighSlopeL
+      213: -434167352627357646
+    second: Walking_5
   - first:
-      213: -3243025859931312931
-    second: Template Tile Set_HighSlopeR
+      213: -4973530997829974419
+    second: Walking_6
   - first:
-      213: 8037235728105018612
-    second: Template Tile Set_Platform
+      213: 9001918012945569453
+    second: Walking_7
+  - first:
+      213: 2041868273384794170
+    second: Walking_8
+  - first:
+      213: -6439067161863970206
+    second: Walking_9
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -66,8 +72,8 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 0
-  spriteMeshType: 0
+  spriteExtrude: 1
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -84,7 +90,7 @@ TextureImporter:
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
-  ignorePngGamma: 1
+  ignorePngGamma: 0
   applyGammaDecoding: 0
   platformSettings:
   - serializedVersion: 3
@@ -127,13 +133,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Template Tile Set_Square
+      name: Walking_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 100
-        height: 100
+        x: 1
+        y: 3
+        width: 26
+        height: 37
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,20 +147,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 567e900742968feb0800000000000000
-      internalID: -4685879807059564699
+      spriteID: 5bc37d97ec3f4a130800000000000000
+      internalID: 3577252072171977909
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Template Tile Set_LowSlopeLA
+      name: Walking_1
       rect:
         serializedVersion: 2
-        x: 100
-        y: 0
-        width: 100
-        height: 100
+        x: 28
+        y: 2
+        width: 33
+        height: 37
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -162,20 +168,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: db72732f24f3cf510800000000000000
-      internalID: 1584210725691664317
+      spriteID: 98e2eaf46381efc80800000000000000
+      internalID: -8287159642771018103
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Template Tile Set_LowSlopeRA
+      name: Walking_2
       rect:
         serializedVersion: 2
-        x: 200
-        y: 0
-        width: 100
-        height: 100
+        x: 63
+        y: 1
+        width: 44
+        height: 37
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -183,20 +189,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6fc581df9970c4430800000000000000
-      internalID: 3768395346159885558
+      spriteID: b864add3908e383f0800000000000000
+      internalID: -899620374153902453
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Template Tile Set_LowSlopeLB
+      name: Walking_3
       rect:
         serializedVersion: 2
-        x: 300
-        y: 0
-        width: 100
-        height: 100
+        x: 109
+        y: 3
+        width: 34
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -204,20 +210,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c0e30f345cc106900800000000000000
-      internalID: 675571577679527436
+      spriteID: f436219126354aae0800000000000000
+      internalID: -1539013491861331121
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Template Tile Set_LowSlopeRB
+      name: Walking_4
       rect:
         serializedVersion: 2
-        x: 400
-        y: 0
-        width: 100
-        height: 100
+        x: 145
+        y: 3
+        width: 27
+        height: 37
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -225,20 +231,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 56c29b003e28ce270800000000000000
-      internalID: 8281137726308822117
+      spriteID: 0e44e538b4851daa0800000000000000
+      internalID: -6138027735779490592
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Template Tile Set_HighSlopeL
+      name: Walking_5
       rect:
         serializedVersion: 2
-        x: 500
-        y: 0
-        width: 100
-        height: 100
+        x: 176
+        y: 2
+        width: 25
+        height: 35
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -246,20 +252,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: af7188fd4d6e11680800000000000000
-      internalID: -8785987596065433606
+      spriteID: 2381395d71789f9f0800000000000000
+      internalID: -434167352627357646
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Template Tile Set_HighSlopeR
+      name: Walking_6
       rect:
         serializedVersion: 2
-        x: 600
-        y: 0
-        width: 100
-        height: 100
+        x: 203
+        y: 2
+        width: 26
+        height: 37
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -267,20 +273,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ddc6365a9257ef2d0800000000000000
-      internalID: -3243025859931312931
+      spriteID: d6643fa88e77afab0800000000000000
+      internalID: -4973530997829974419
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Template Tile Set_Platform
+      name: Walking_7
       rect:
         serializedVersion: 2
-        x: 700
-        y: 0
-        width: 100
-        height: 100
+        x: 231
+        y: 2
+        width: 37
+        height: 35
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -288,8 +294,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4f417c5cf4ff98f60800000000000000
-      internalID: 8037235728105018612
+      spriteID: da69fc21dbc3dec70800000000000000
+      internalID: 9001918012945569453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walking_8
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 1
+        width: 28
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a38ad39506c265c10800000000000000
+      internalID: 2041868273384794170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walking_9
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 2
+        width: 25
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 262273c2886d3a6a0800000000000000
+      internalID: -6439067161863970206
       vertices: []
       indices: 
       edges: []
