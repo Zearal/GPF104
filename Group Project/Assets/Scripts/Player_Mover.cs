@@ -12,10 +12,10 @@ public class Player_Mover : MonoBehaviour
     public BoxCollider2D bc;
 
     private float horizontal;
-    private float speed = 3f;
+    private float speed = 5f;
     private float jumpingPower = 8f;
     private bool isFacingRight = true;
-    private float slideFactor = 0.8f;
+    private float slideFactor = 1.5f;
     private int jumpCount = 0;
 
 
@@ -75,13 +75,10 @@ public class Player_Mover : MonoBehaviour
             RaycastHit2D raycastHit = Physics2D.BoxCast(bc.bounds.center, bc.bounds.size, 0, Vector2.left, 0.1f, groundLayer);
             return raycastHit.collider != null;
         }
-            //return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
-
     }
 
     private void IsSliding()
     {
-        //return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
         if (IsOnWall() && !IsGrounded())
         {
             Vector2 slide = rb.velocity;
@@ -89,7 +86,6 @@ public class Player_Mover : MonoBehaviour
             rb.velocity = slide;
             animator.SetBool("IsSliding", true);
             horizontal = 0;
-            jumpCount = 0;
         }
         else
         {
@@ -112,10 +108,10 @@ public class Player_Mover : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if (context.performed && IsOnWall() && jumpCount < 1)
+        if (context.performed && IsOnWall() && jumpCount < 3)
         {
             Flip();
-            rb.velocity = new Vector2(jumpingPower, jumpingPower);
+            rb.velocity = new Vector2((rb.velocity.x * 1.25f), (jumpingPower * 1.25f));
             jumpCount++;
         }
 
