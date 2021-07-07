@@ -5,20 +5,27 @@ using UnityEngine.InputSystem;
 
 public class Player_Mover : MonoBehaviour
 {
+    private Core core;
+    public InputActionAsset controls;
+    [Header("Attachments")]
     public Animator animator;
     public Rigidbody2D rb;
-    public Transform groundCheck;
     public LayerMask groundLayer;
     public BoxCollider2D bc;
 
+
     private float horizontal;
-    private float speed = 5f;
-    private float jumpingPower = 8f;
+    [Header("Stats")]
+    public float speed = 6f;
+    public float jumpingPower = 10f;
     private bool isFacingRight = true;
     private float slideFactor = 1.5f;
     private int jumpCount = 0;
 
-
+    private void Awake()
+    {
+        
+    }
     // Update is called once per frame
     void Update()
     {
@@ -45,14 +52,14 @@ public class Player_Mover : MonoBehaviour
         {
             animator.SetBool("IsJumping", false);
         }
-
+        
         IsSliding();
-
+        
         if (IsGrounded())
         {
             jumpCount = 0;
         }
-
+        
     }
 
     private bool IsGrounded()
@@ -118,11 +125,31 @@ public class Player_Mover : MonoBehaviour
         if (context.performed && IsGrounded())
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+            Debug.Log("jumping");
         }
 
         if (context.canceled && rb.velocity.y > 0f)
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+        }
+    }
+
+    public void Attack(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Debug.Log("Attacking");
+            core.Damage(3);
+            core.Heal(4);
+        }
+    }
+
+    public void Use(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Debug.Log("You used it");
+            
         }
     }
 }
