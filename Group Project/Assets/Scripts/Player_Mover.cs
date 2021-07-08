@@ -10,7 +10,9 @@ public class Player_Mover : MonoBehaviour
     public Animator animator;
     public Rigidbody2D rb;
     public LayerMask groundLayer;
+    public LayerMask enemyLayers;
     public BoxCollider2D bc;
+    public BoxCollider2D hitBox;
 
 
     private float horizontal;
@@ -18,6 +20,7 @@ public class Player_Mover : MonoBehaviour
     public float speed = 6f;
     public float jumpingPower = 10f;
     private bool isFacingRight = true;
+    private bool isAttacking = false;
     private float slideFactor = 1.5f;
     private int jumpCount = 0;
 
@@ -28,7 +31,7 @@ public class Player_Mover : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!IsOnWall())
+        if (!IsOnWall() && !isAttacking)
         {
             rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
         }
@@ -114,14 +117,14 @@ public class Player_Mover : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if (context.performed && IsOnWall() && jumpCount < 3)
+        if (context.performed && IsOnWall() && jumpCount < 3 && !isAttacking)
         {
             Flip();
             rb.velocity = new Vector2((rb.velocity.x * 1.25f), (jumpingPower * 1.25f));
             jumpCount++;
         }
 
-        if (context.performed && IsGrounded())
+        if (context.performed && IsGrounded() && !isAttacking)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
             Debug.Log("jumping");
@@ -137,15 +140,21 @@ public class Player_Mover : MonoBehaviour
     {
         if (context.performed)
         {
-            Debug.Log("Attacking");
-            core.Damage(3);
-            core.Heal(4);
+            animator.SetBool("IsLightAttacking", true);
+            isAttacking = true;          
+            
         }
+        if (context.canceled)
+        {
+            animator.SetBool("IsLightAttacking", false);
+            isAttacking = false;
+        }
+        
     }
 
     public void Use(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.started)
         {
             Debug.Log("You used it");
             

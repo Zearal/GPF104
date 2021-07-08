@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 93279857441919270}
   - component: {fileID: 93279857441919271}
-  - component: {fileID: 93279857441919264}
   - component: {fileID: 609926947841172182}
+  - component: {fileID: 8765707345461783464}
+  - component: {fileID: 93279857441919264}
   - component: {fileID: 8552795188017438434}
   - component: {fileID: 478591561996602392}
   - component: {fileID: 2494992842494996578}
@@ -88,6 +89,53 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!50 &609926947841172182
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 93279857441919265}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0.25
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!61 &8765707345461783464
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 93279857441919265}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.1304849, y: -0.005895568}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.26, y: 0.32}
+    newSize: {x: 0.16, y: 0.16}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.119130164, y: 0.051745262}
+  m_EdgeRadius: 0
 --- !u!61 &93279857441919264
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -114,27 +162,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.1, y: 0.3}
   m_EdgeRadius: 0
---- !u!50 &609926947841172182
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 93279857441919265}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0.25
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!114 &8552795188017438434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,56 +188,24 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 478591561996602392}
-        m_TargetAssemblyTypeName: Player_Mover, Assembly-CSharp
-        m_MethodName: Move
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 874aa8a4-a915-4e08-b14e-13f2bcfce6b7
-    m_ActionName: Character/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 478591561996602392}
-        m_TargetAssemblyTypeName: Player_Mover, Assembly-CSharp
-        m_MethodName: Jump
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: ecb7fde0-7c9b-4445-925b-1e90c730b30d
-    m_ActionName: Character/Jump[/Keyboard/space]
+      m_Calls: []
+    m_ActionId: f3a4966a-a263-4655-b333-34a1b91f244c
+    m_ActionName: InGame/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 5d737a5b-dafa-43e4-99cb-18e0be710516
-    m_ActionName: Character/Attack[/Mouse/leftButton]
+    m_ActionId: b728b3e2-fff3-474f-8851-7ea2f038d9bf
+    m_ActionName: InGame/Jump[/Keyboard/space]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: e9834e11-986b-465c-b214-710b527233d0
-    m_ActionName: Character/Block[/Mouse/rightButton]
+    m_ActionId: aad01e54-84f7-45cb-8722-b877a40dc191
+    m_ActionName: InGame/Use[/Keyboard/f]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 096d6ac9-6f99-456e-9bea-f34604aa816b
-    m_ActionName: Character/Use[/Keyboard/e]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 856e18b1-6e07-4386-8eff-1fa4e1a6530e
-    m_ActionName: Character/Run[/Keyboard/shift]
+    m_ActionId: 35e9169d-fba9-464e-a0cd-76493265610d
+    m_ActionName: InGame/Attack[/Mouse/leftButton]
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: PlayerControls
-  m_DefaultActionMap: Character
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: InGame
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &478591561996602392

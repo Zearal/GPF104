@@ -2,13 +2,13 @@
     "name": "PlayerControls",
     "maps": [
         {
-            "name": "Character",
-            "id": "24042663-a356-41df-ab6a-06359c87f4ec",
+            "name": "InGame",
+            "id": "75a08d99-ca7a-4385-9c4f-f00dbf690d87",
             "actions": [
                 {
                     "name": "Move",
                     "type": "Button",
-                    "id": "874aa8a4-a915-4e08-b14e-13f2bcfce6b7",
+                    "id": "f3a4966a-a263-4655-b333-34a1b91f244c",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -16,23 +16,7 @@
                 {
                     "name": "Jump",
                     "type": "Button",
-                    "id": "ecb7fde0-7c9b-4445-925b-1e90c730b30d",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "Attack",
-                    "type": "Button",
-                    "id": "5d737a5b-dafa-43e4-99cb-18e0be710516",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "Block",
-                    "type": "Button",
-                    "id": "e9834e11-986b-465c-b214-710b527233d0",
+                    "id": "b728b3e2-fff3-474f-8851-7ea2f038d9bf",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -40,7 +24,15 @@
                 {
                     "name": "Use",
                     "type": "Button",
-                    "id": "096d6ac9-6f99-456e-9bea-f34604aa816b",
+                    "id": "aad01e54-84f7-45cb-8722-b877a40dc191",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Attack",
+                    "type": "Button",
+                    "id": "35e9169d-fba9-464e-a0cd-76493265610d",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -48,30 +40,8 @@
             ],
             "bindings": [
                 {
-                    "name": "",
-                    "id": "ed54ed35-b10a-4a0e-925f-3ae4bd0429b6",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "PlayerControls",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "ccfe7aef-4f0e-4cea-ba25-656431ac39ad",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "PlayerControls",
-                    "action": "Attack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
                     "name": "2D Vector",
-                    "id": "1f4c736a-28d6-4ef5-9abb-8acb35c53571",
+                    "id": "f946f86a-8091-49f0-960b-2dfa26908ad6",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
@@ -82,67 +52,78 @@
                 },
                 {
                     "name": "up",
-                    "id": "52e2651b-cd7f-4426-857b-1e74bff23f53",
+                    "id": "a82e2104-25bb-4886-a648-0d837b8cc8aa",
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
-                    "groups": "PlayerControls",
+                    "groups": "Controls",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "down",
-                    "id": "a267e59a-9d7c-41f6-ae77-ac0dbdb7fc89",
+                    "id": "ad4455b6-fdd3-407a-94eb-73e7080f43d9",
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
-                    "groups": "PlayerControls",
+                    "groups": "Controls",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "left",
-                    "id": "dd1e104c-72e1-4e4b-8d88-df430df6ba9d",
+                    "id": "b9a3da9a-10c0-4463-9aba-73d372266a92",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
-                    "groups": "PlayerControls",
+                    "groups": "Controls",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "right",
-                    "id": "86a2971a-406a-406d-855f-3d0bc55b28a3",
+                    "id": "212e8555-1c62-4afd-a67b-9e74e071a11a",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
-                    "groups": "PlayerControls",
+                    "groups": "Controls",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "",
-                    "id": "7a5c8fa8-6ff8-4caf-a09c-68a52e6f4cd5",
-                    "path": "<Mouse>/rightButton",
+                    "id": "188023c3-79af-4f9f-bde6-0bf132f28447",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
-                    "groups": "PlayerControls",
-                    "action": "Block",
+                    "groups": "Controls",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "904cb0e6-6061-4414-a190-7beabe926dd7",
-                    "path": "<Keyboard>/e",
+                    "id": "49711f3c-28ef-4a1d-86d7-40a49e9b5e94",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
-                    "groups": "PlayerControls",
+                    "groups": "Controls",
                     "action": "Use",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a04f4211-4bd2-430f-a93d-b89416076ec6",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controls",
+                    "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -151,8 +132,8 @@
     ],
     "controlSchemes": [
         {
-            "name": "PlayerControls",
-            "bindingGroup": "PlayerControls",
+            "name": "Controls",
+            "bindingGroup": "Controls",
             "devices": [
                 {
                     "devicePath": "<Keyboard>",

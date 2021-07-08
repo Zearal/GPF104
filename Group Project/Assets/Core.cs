@@ -8,6 +8,8 @@ public class Core : MonoBehaviour
     public int maxHealth = 5;
     public int currentHealth;
 
+    public Collider2D hitBox;
+
 
     // Start is called before the first frame update
     void Start()
