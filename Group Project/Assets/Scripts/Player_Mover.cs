@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 public class Player_Mover : MonoBehaviour
 {
     private Core core;
-    public InputActionAsset controls;
     [Header("Attachments")]
     public Animator animator;
     public Rigidbody2D rb;
