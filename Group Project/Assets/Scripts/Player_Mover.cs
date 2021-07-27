@@ -5,14 +5,13 @@ using UnityEngine.InputSystem;
 
 public class Player_Mover : MonoBehaviour
 {
-    private Core core;
     [Header("Attachments")]
     public Animator animator;
     public Rigidbody2D rb;
     public LayerMask groundLayer;
     public LayerMask enemyLayers;
     public BoxCollider2D bc;
-    public BoxCollider2D hitBox;
+    //public CircleCollider2D weapon;
 
 
     private float horizontal;
@@ -141,7 +140,7 @@ public class Player_Mover : MonoBehaviour
         if (context.performed)
         {
             animator.SetBool("IsLightAttacking", true);
-            isAttacking = true;          
+            isAttacking = true;
             
         }
         if (context.canceled)
@@ -158,6 +157,18 @@ public class Player_Mover : MonoBehaviour
         {
             Debug.Log("You used it");
             
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "Enemy")
+        {
+            var healthComponent = collision.GetComponent<Health>();
+            if(healthComponent != null)
+            {
+                healthComponent.Damage(1);
+            }
         }
     }
 }

@@ -97,7 +97,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 903159de1ff331648b8bf9c47a6b6a91, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -116,9 +116,10 @@ GameObject:
   - component: {fileID: -6852025841039574129}
   - component: {fileID: 5739054082655050519}
   - component: {fileID: 1336488181}
+  - component: {fileID: 4224387695029346720}
   m_Layer: 6
   m_Name: Slime
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -131,7 +132,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5202470631622798746}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.324349, y: -4.4200025, z: -38.596115}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children:
   - {fileID: 8613907792897479431}
@@ -151,7 +152,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.010744825, y: -0.006837614}
+  m_Offset: {x: -0.010744825, y: 0.05093863}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -162,7 +163,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.2555304, y: 0.20897405}
+  m_Size: {x: 0.2555304, y: 0.34400308}
   m_EdgeRadius: 0
 --- !u!50 &-6852025841039574129
 Rigidbody2D:
@@ -177,10 +178,10 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 1
-  m_AngularDrag: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: f1186cccdcdb87647b7b04192a55cfed, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -225,17 +226,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87c4dddced1530e4f9c2b76056fb312a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 93279857441919270, guid: 10ecb815c0e05434aa546d7119564d65, type: 3}
-  activeDistance: 7.5
+  target: {fileID: 0}
+  activeDistance: 12
   pathUpdateSeconds: 0.5
   speed: 450
-  nextWayPointDistance: 3
-  jumpNodeHeightRequirment: 0.8
-  jumpModifier: 0.1
-  jumpCheckOffset: 0.01
+  nextWayPointDistance: 1
+  jumpNodeHeightRequirment: 0.05
+  jumpModifier: 0.05
+  jumpCheckOffset: 0
   followEnabled: 1
   jumpEnabled: 1
   directionLookEnabled: 1
   enemyGFX: {fileID: 8613907792897479431}
   enemyAni: {fileID: 9116824877414077584}
-  isGrounded: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+--- !u!114 &4224387695029346720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5202470631622798746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 910e07a389474b14aae3e7e7dbbe1722, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 1
+  healthHost: {fileID: 5202470631622798746}
