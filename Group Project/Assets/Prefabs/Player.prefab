@@ -252,6 +252,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   bc: {fileID: 93279857441919264}
+  weapon: {fileID: 6826983233701625308}
   speed: 6
   jumpingPower: 8
 --- !u!95 &2494992842494996578
@@ -285,7 +286,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 910e07a389474b14aae3e7e7dbbe1722, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 5
+  maxHealth: 6
+  currentHealth: 0
   healthHost: {fileID: 93279857441919265}
 --- !u!58 &6826983233701625308
 CircleCollider2D:
@@ -300,6 +302,6 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.1, y: 0}
+  m_Offset: {x: 0.12, y: 0}
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 0.12

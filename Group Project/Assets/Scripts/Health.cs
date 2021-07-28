@@ -5,11 +5,14 @@ using UnityEngine.Animations;
 
 public class Health : MonoBehaviour
 {
-    public int maxHealth = 5;
-    private int currentHealth;
+    public int maxHealth = 3;
+    public int currentHealth;
+    private bool canBeHurt = true;
+    
     public GameObject healthHost;
     private string currentState;
     private Animator ani;
+    private Rigidbody2D rb;
 
     //public Collider2D hitBox;
 
@@ -23,6 +26,7 @@ public class Health : MonoBehaviour
         {
             ani = GetComponentInChildren<Animator>();
         }
+        rb = GetComponent<Rigidbody2D>();
     }
     void ChangeAnimationState(string newState)
     {
@@ -48,8 +52,15 @@ public class Health : MonoBehaviour
 
     public void Death()
     {
-        
-        Destroy(healthHost);
+        if (healthHost.CompareTag("Player"))
+        {
+            Debug.Log("GAME OVER");
+            
+        }
+        else
+        {
+            Destroy(healthHost);
+        }
     }
 
     public void Heal(int heal)
@@ -62,22 +73,42 @@ public class Health : MonoBehaviour
             }
             heal--;
         }
-        
         Debug.Log("You Healed your health is :" + currentHealth);
     }
 
     public void Damage(int damage)
     {
-        currentHealth -= damage;
-        if (currentHealth < 0) currentHealth = 0;
-        Debug.Log(healthHost + " took " + damage + " you health is :" + currentHealth);
-    }
+        if (canBeHurt)
+        {
+            
+            currentHealth -= damage;
+            StartCoroutine(Invurable());
+            if (currentHealth < 0)
+            {
+                currentHealth = 0;
+                Debug.Log("Target is Dead");
+            }
+            else
+            {
+                Debug.Log(healthHost + " took " + damage + " you health is :" + currentHealth);
+            }
 
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.tag == "Enemy")
-    //    {
-    //        Damage(1);
-    //    }
-    //}
+        }
+        else
+        {
+            Debug.Log("Cant be hurt");
+        }
+    }
+    IEnumerator Invurable()
+    {
+        canBeHurt = false;
+        //if (healthHost.CompareTag("Player"))
+        //{
+        //    rb.velocity = new Vector2(0, 0);
+        //}
+        ChangeAnimationState("Hurt");
+        yield return new WaitForSeconds(1f);
+        canBeHurt = true;
+        ChangeAnimationState("Idle");
+    }
 }

@@ -11,7 +11,7 @@ public class Player_Mover : MonoBehaviour
     public LayerMask groundLayer;
     public LayerMask enemyLayers;
     public BoxCollider2D bc;
-    //public CircleCollider2D weapon;
+    public CircleCollider2D weapon;
 
 
     private float horizontal;
@@ -22,11 +22,6 @@ public class Player_Mover : MonoBehaviour
     private bool isAttacking = false;
     private float slideFactor = 1.5f;
     private int jumpCount = 0;
-
-    private void Awake()
-    {
-        
-    }
     // Update is called once per frame
     void Update()
     {
@@ -60,7 +55,7 @@ public class Player_Mover : MonoBehaviour
         {
             jumpCount = 0;
         }
-        
+
     }
 
     private bool IsGrounded()
@@ -111,7 +106,8 @@ public class Player_Mover : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
-            horizontal = context.ReadValue<Vector2>().x;
+        //if()
+        horizontal = context.ReadValue<Vector2>().x;
     }
 
     public void Jump(InputAction.CallbackContext context)
@@ -141,7 +137,6 @@ public class Player_Mover : MonoBehaviour
         {
             animator.SetBool("IsLightAttacking", true);
             isAttacking = true;
-            
         }
         if (context.canceled)
         {
@@ -161,14 +156,25 @@ public class Player_Mover : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.tag == "Enemy")
+    {     
+        if(weapon.IsTouching(collision) && collision.gameObject.tag == "Enemy")
         {
-            var healthComponent = collision.GetComponent<Health>();
+            var healthComponent = collision.gameObject.GetComponent<Health>();
+            var rbComponent = collision.gameObject.GetComponent<Rigidbody2D>();
             if(healthComponent != null)
             {
+                Vector2 difference = collision.transform.position - transform.position;
+                difference = difference.normalized * 5;
+                rbComponent.AddForce(difference, ForceMode2D.Impulse);
+                StartCoroutine(KnockTime(rbComponent));
                 healthComponent.Damage(1);
             }
         }
+    }
+
+    private IEnumerator KnockTime(Rigidbody2D enemy)
+    {
+        yield return new WaitForSeconds(1);
+        enemy.velocity = Vector2.zero;
     }
 }

@@ -33,6 +33,7 @@ public class Enemy_AI : MonoBehaviour
     Seeker seeker;
     Rigidbody2D rb;
     BoxCollider2D bc;
+    CircleCollider2D attackZone;
     public LayerMask groundLayer;
 
 
@@ -42,6 +43,7 @@ public class Enemy_AI : MonoBehaviour
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
         bc = GetComponent<BoxCollider2D>();
+        attackZone = GetComponent<CircleCollider2D>();
         InvokeRepeating("UpdatePath", 0f, pathUpdateSeconds);
     }
 
@@ -144,7 +146,36 @@ public class Enemy_AI : MonoBehaviour
             currentWayPoint = 0;
         }
     }
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (attackZone.IsTouching(collision) && collision.CompareTag("Player") && collision.isTrigger == false)
+        {
+            var healthComponent = collision.gameObject.GetComponent<Health>();
+            var rbComponent = collision.gameObject.GetComponent<Rigidbody2D>();
+            var playerController = collision.gameObject.GetComponent<Player_Mover>();
+            if (healthComponent != null)
+            {
+                playerController.enabled = false;
+                Vector2 difference = collision.transform.position - transform.position;
+                difference = difference.normalized * 10;
+                rbComponent.velocity = difference;
+                //rbComponent.AddForce(difference, ForceMode2D.Impulse);
+                StartCoroutine(KnockTime(rbComponent, playerController));
+                healthComponent.Damage(1);
+            }
+        }
+    }
+    private IEnumerator KnockTime(Rigidbody2D player, Player_Mover playerController)
+    {
+        yield return new WaitForSeconds(1f);
+        player.velocity = Vector2.zero;
+        playerController.enabled = true;
+        
+    }
+    private void OnAnimatorIK(int layerIndex)
+    {
+    
+    }
     // Update is called once per frame
     void FixedUpdate()
     {
