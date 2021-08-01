@@ -7,8 +7,11 @@ public class Player_Mover : MonoBehaviour
 {
     [Header("Attachments")]
     public Animator animator;
+    public Animator dust;
+    public AudioManager audio;
     public Rigidbody2D rb;
     public LayerMask groundLayer;
+    public LayerMask wallLayer;
     public LayerMask enemyLayers;
     public BoxCollider2D bc;
     public CircleCollider2D weapon;
@@ -18,8 +21,10 @@ public class Player_Mover : MonoBehaviour
     [Header("Stats")]
     public float speed = 6f;
     public float jumpingPower = 10f;
-    private bool isFacingRight = true;
+    private int attackDamage = 0;
+    public bool isFacingRight = true;
     private bool isAttacking = false;
+    public bool isDisabled = false;
     private float slideFactor = 1.5f;
     private int jumpCount = 0;
     // Update is called once per frame
@@ -56,6 +61,14 @@ public class Player_Mover : MonoBehaviour
             jumpCount = 0;
         }
 
+        if (IsGrounded() && Mathf.Abs(rb.velocity.x) > 0f)
+        {
+            dust.SetBool("isRunning", true);
+        }
+        else
+        {
+            dust.SetBool("isRunning", false);
+        }
     }
 
     private bool IsGrounded()
@@ -70,12 +83,12 @@ public class Player_Mover : MonoBehaviour
     {
         if (isFacingRight)
         {
-            RaycastHit2D raycastHit = Physics2D.BoxCast(bc.bounds.center, bc.bounds.size, 0, Vector2.right, 0.1f, groundLayer);
+            RaycastHit2D raycastHit = Physics2D.BoxCast(bc.bounds.center, bc.bounds.size, 0, Vector2.right, 0.1f, wallLayer);
             return raycastHit.collider != null;
         }
         else
         {
-            RaycastHit2D raycastHit = Physics2D.BoxCast(bc.bounds.center, bc.bounds.size, 0, Vector2.left, 0.1f, groundLayer);
+            RaycastHit2D raycastHit = Physics2D.BoxCast(bc.bounds.center, bc.bounds.size, 0, Vector2.left, 0.1f, wallLayer);
             return raycastHit.collider != null;
         }
     }
@@ -106,46 +119,76 @@ public class Player_Mover : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
-        //if()
-        horizontal = context.ReadValue<Vector2>().x;
+        if (!isDisabled)
+        {
+            horizontal = context.ReadValue<Vector2>().x;
+        }
     }
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if (context.performed && IsOnWall() && jumpCount < 3 && !isAttacking)
+        if (!isDisabled)
         {
-            Flip();
-            rb.velocity = new Vector2((rb.velocity.x * 1.25f), (jumpingPower * 1.25f));
-            jumpCount++;
-        }
+            if (context.performed && IsOnWall() && jumpCount < 5 && !isAttacking)
+            {
+                audio.Play("Player_Jump");
+                Flip();
+                rb.velocity = new Vector2((rb.velocity.x * 1.25f), (jumpingPower * 1.25f));
+                jumpCount++;
+            }
 
-        if (context.performed && IsGrounded() && !isAttacking)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
-            Debug.Log("jumping");
-        }
+            if (context.performed && IsGrounded() && !isAttacking)
+            {
+                audio.Play("Player_Jump");
+                rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+                Debug.Log("jumping");
+            }
 
-        if (context.canceled && rb.velocity.y > 0f)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+            if (context.canceled && rb.velocity.y > 0f)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+            }
         }
     }
 
     public void Attack(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && !isAttacking)
         {
+            rb.velocity = Vector2.zero;
             animator.SetBool("IsLightAttacking", true);
             isAttacking = true;
+            attackDamage = 1;
+            StartCoroutine(LightAttCooldown());
         }
-        if (context.canceled)
-        {
-            animator.SetBool("IsLightAttacking", false);
-            isAttacking = false;
-        }
-        
-    }
 
+    }
+    IEnumerator LightAttCooldown()
+    {
+        yield return new WaitForSeconds(0.5f);
+        animator.SetBool("IsLightAttacking", false);
+        attackDamage = 0;
+        isAttacking = false;
+    }
+    public void Attack2(InputAction.CallbackContext context)
+    {
+        if (context.performed && !isAttacking)
+        {
+            rb.velocity = Vector2.zero;
+            animator.SetBool("IsHeavyAttacking", true);
+            isAttacking = true;
+            attackDamage = 3;
+            StartCoroutine(HeavyAttCooldown());
+        }
+
+    }
+    IEnumerator HeavyAttCooldown()
+    {
+        yield return new WaitForSeconds(1f);
+        animator.SetBool("IsHeavyAttacking", false);
+        attackDamage = 0;
+        isAttacking = false;
+    }
     public void Use(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -167,14 +210,15 @@ public class Player_Mover : MonoBehaviour
                 difference = difference.normalized * 5;
                 rbComponent.AddForce(difference, ForceMode2D.Impulse);
                 StartCoroutine(KnockTime(rbComponent));
-                healthComponent.Damage(1);
+                healthComponent.Damage(attackDamage);
             }
         }
     }
 
     private IEnumerator KnockTime(Rigidbody2D enemy)
     {
-        yield return new WaitForSeconds(1);
-        enemy.velocity = Vector2.zero;
+        enemy.GetComponent<Enemy_AI>().followEnabled = false;
+        yield return new WaitForSeconds(1f);
+        enemy.GetComponent<Enemy_AI>().followEnabled = true;
     }
 }

@@ -7,15 +7,14 @@ public class Health : MonoBehaviour
 {
     public int maxHealth = 3;
     public int currentHealth;
-    private bool canBeHurt = true;
+    public bool canBeHurt = true;
+    public bool isDead = false;
     
     public GameObject healthHost;
     private string currentState;
     private Animator ani;
-    private Rigidbody2D rb;
-
-    //public Collider2D hitBox;
-
+    public int score = 100;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +25,6 @@ public class Health : MonoBehaviour
         {
             ani = GetComponentInChildren<Animator>();
         }
-        rb = GetComponent<Rigidbody2D>();
     }
     void ChangeAnimationState(string newState)
     {
@@ -43,10 +41,22 @@ public class Health : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currentHealth == 0)
+        if (currentHealth == 0 && !isDead)
         {
             ChangeAnimationState("Death");
-            Invoke("Death", 1);
+            if (healthHost.CompareTag("Enemy"))
+            {
+                CircleCollider2D attackZone = healthHost.GetComponent<CircleCollider2D>();
+                healthHost.GetComponent<Enemy_AI>().followEnabled = false;
+                healthHost.GetComponent<Enemy_AI>().isDying = true;
+                attackZone.enabled = false;
+            }
+            GameManager.instance.AddScore(score);
+            Debug.Log("Added score");
+            BoxCollider2D hitbox = healthHost.GetComponent<BoxCollider2D>();
+            hitbox.enabled = false;
+            isDead = true;
+            Invoke("Death", 2);
         }
     }
 
@@ -54,8 +64,7 @@ public class Health : MonoBehaviour
     {
         if (healthHost.CompareTag("Player"))
         {
-            Debug.Log("GAME OVER");
-            
+            Debug.Log("GAME OVER");  
         }
         else
         {
@@ -79,8 +88,7 @@ public class Health : MonoBehaviour
     public void Damage(int damage)
     {
         if (canBeHurt)
-        {
-            
+        {           
             currentHealth -= damage;
             StartCoroutine(Invurable());
             if (currentHealth < 0)
@@ -92,7 +100,6 @@ public class Health : MonoBehaviour
             {
                 Debug.Log(healthHost + " took " + damage + " you health is :" + currentHealth);
             }
-
         }
         else
         {
@@ -102,13 +109,12 @@ public class Health : MonoBehaviour
     IEnumerator Invurable()
     {
         canBeHurt = false;
-        //if (healthHost.CompareTag("Player"))
-        //{
-        //    rb.velocity = new Vector2(0, 0);
-        //}
         ChangeAnimationState("Hurt");
         yield return new WaitForSeconds(1f);
         canBeHurt = true;
-        ChangeAnimationState("Idle");
+        if (currentHealth != 0)
+        {
+            ChangeAnimationState("Idle");
+        }
     }
 }
