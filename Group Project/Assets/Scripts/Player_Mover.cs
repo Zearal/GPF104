@@ -8,7 +8,6 @@ public class Player_Mover : MonoBehaviour
     [Header("Attachments")]
     public Animator animator;
     public Animator dust;
-    public AudioManager audio;
     public Rigidbody2D rb;
     public LayerMask groundLayer;
     public LayerMask wallLayer;
@@ -131,7 +130,7 @@ public class Player_Mover : MonoBehaviour
         {
             if (context.performed && IsOnWall() && jumpCount < 5 && !isAttacking)
             {
-                audio.Play("Player_Jump");
+                AudioManager.instance.Play("Player_Jump");
                 Flip();
                 rb.velocity = new Vector2((rb.velocity.x * 1.25f), (jumpingPower * 1.25f));
                 jumpCount++;
@@ -139,7 +138,7 @@ public class Player_Mover : MonoBehaviour
 
             if (context.performed && IsGrounded() && !isAttacking)
             {
-                audio.Play("Player_Jump");
+                AudioManager.instance.Play("Player_Jump");
                 rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
                 Debug.Log("jumping");
             }
@@ -156,6 +155,7 @@ public class Player_Mover : MonoBehaviour
         if (context.performed && !isAttacking)
         {
             rb.velocity = Vector2.zero;
+            AudioManager.instance.Play("Player_Attack");
             animator.SetBool("IsLightAttacking", true);
             isAttacking = true;
             attackDamage = 1;
@@ -175,12 +175,12 @@ public class Player_Mover : MonoBehaviour
         if (context.performed && !isAttacking)
         {
             rb.velocity = Vector2.zero;
+            AudioManager.instance.Play("Player_Attack2");
             animator.SetBool("IsHeavyAttacking", true);
             isAttacking = true;
             attackDamage = 3;
             StartCoroutine(HeavyAttCooldown());
         }
-
     }
     IEnumerator HeavyAttCooldown()
     {
@@ -203,22 +203,10 @@ public class Player_Mover : MonoBehaviour
         if(weapon.IsTouching(collision) && collision.gameObject.tag == "Enemy")
         {
             var healthComponent = collision.gameObject.GetComponent<Health>();
-            var rbComponent = collision.gameObject.GetComponent<Rigidbody2D>();
             if(healthComponent != null)
             {
-                Vector2 difference = collision.transform.position - transform.position;
-                difference = difference.normalized * 5;
-                rbComponent.AddForce(difference, ForceMode2D.Impulse);
-                StartCoroutine(KnockTime(rbComponent));
                 healthComponent.Damage(attackDamage);
             }
         }
-    }
-
-    private IEnumerator KnockTime(Rigidbody2D enemy)
-    {
-        enemy.GetComponent<Enemy_AI>().followEnabled = false;
-        yield return new WaitForSeconds(1f);
-        enemy.GetComponent<Enemy_AI>().followEnabled = true;
     }
 }

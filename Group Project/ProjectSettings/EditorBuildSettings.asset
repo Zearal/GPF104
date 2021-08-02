@@ -9,7 +9,13 @@ EditorBuildSettings:
     path: Assets/Scenes/Title.unity
     guid: ceff07877543dac4788642e4e0d023cd
   - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: ff611e819c841564195331b4009ff02f
+  - enabled: 1
     path: Assets/Scenes/Test Level.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Level_1_Swamp.unity
+    guid: 54cc51703a35f8e43a3ba49277e98ae4
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: da754c9216fc905439c509cf39d65ae3, type: 2}

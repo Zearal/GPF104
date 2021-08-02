@@ -44,19 +44,27 @@ public class Health : MonoBehaviour
         if (currentHealth == 0 && !isDead)
         {
             ChangeAnimationState("Death");
+            if (healthHost.CompareTag("Player"))
+            {
+
+            }
             if (healthHost.CompareTag("Enemy"))
             {
                 CircleCollider2D attackZone = healthHost.GetComponent<CircleCollider2D>();
                 healthHost.GetComponent<Enemy_AI>().followEnabled = false;
                 healthHost.GetComponent<Enemy_AI>().isDying = true;
                 attackZone.enabled = false;
+                Invoke("Death", 0.8f);
+                GameManager.instance.AddScore(score);
+                Debug.Log("Added score");
+                BoxCollider2D hitbox = healthHost.GetComponent<BoxCollider2D>();
+                hitbox.enabled = false;
             }
-            GameManager.instance.AddScore(score);
-            Debug.Log("Added score");
-            BoxCollider2D hitbox = healthHost.GetComponent<BoxCollider2D>();
-            hitbox.enabled = false;
             isDead = true;
-            Invoke("Death", 2);
+            if (healthHost.CompareTag("Player"))
+            {
+                Death();
+            }
         }
     }
 
@@ -64,7 +72,8 @@ public class Health : MonoBehaviour
     {
         if (healthHost.CompareTag("Player"))
         {
-            Debug.Log("GAME OVER");  
+            Debug.Log("GAME OVER");
+            GameManager.instance.OnPlayerDeath();
         }
         else
         {
@@ -110,8 +119,16 @@ public class Health : MonoBehaviour
     {
         canBeHurt = false;
         ChangeAnimationState("Hurt");
+        if (healthHost.CompareTag("Enemy"))
+        {
+            healthHost.GetComponent<Enemy_AI>().followEnabled = false;
+        }
         yield return new WaitForSeconds(1f);
         canBeHurt = true;
+        if (healthHost.CompareTag("Enemy"))
+        {
+            healthHost.GetComponent<Enemy_AI>().followEnabled = true;
+        }
         if (currentHealth != 0)
         {
             ChangeAnimationState("Idle");

@@ -14,6 +14,9 @@ TextureImporter:
   - first:
       213: -7409475802296340176
     second: Ooze_boss_attack1_4
+  - first:
+      213: 761491081915396709
+    second: Ooze_boss_attack1_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -44,7 +47,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 0
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -58,7 +61,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 56
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -118,10 +121,10 @@ TextureImporter:
       name: Ooze_boss_attack1_0
       rect:
         serializedVersion: 2
-        x: 45
+        x: 42
         y: 0
-        width: 50
-        height: 48
+        width: 56
+        height: 56
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -139,10 +142,10 @@ TextureImporter:
       name: Ooze_boss_attack1_1
       rect:
         serializedVersion: 2
-        x: 142
+        x: 139
         y: 0
-        width: 49
-        height: 48
+        width: 56
+        height: 56
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -160,10 +163,10 @@ TextureImporter:
       name: Ooze_boss_attack1_2
       rect:
         serializedVersion: 2
-        x: 201
+        x: 200
         y: 0
-        width: 86
-        height: 48
+        width: 89
+        height: 56
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -178,13 +181,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ooze_boss_attack1_4
+      name: Ooze_boss_attack1_5
       rect:
         serializedVersion: 2
         x: 289
         y: 0
-        width: 94
-        height: 48
+        width: 95
+        height: 56
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,8 +195,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0313640d3014c2990800000000000000
-      internalID: -7409475802296340176
+      spriteID: 562f13dba1c519a00800000000000000
+      internalID: 761491081915396709
       vertices: []
       indices: 
       edges: []

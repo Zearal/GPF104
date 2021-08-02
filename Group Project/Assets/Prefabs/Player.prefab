@@ -9,13 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 93279857441919270}
+  - component: {fileID: 1648701572}
   - component: {fileID: 8552795188017438434}
   - component: {fileID: 93279857441919271}
   - component: {fileID: 609926947841172182}
   - component: {fileID: 93279857441919264}
   - component: {fileID: 478591561996602392}
   - component: {fileID: 2494992842494996578}
-  - component: {fileID: 1648701572}
   - component: {fileID: 6826983233701625308}
   - component: {fileID: 1678216384}
   m_Layer: 0
@@ -40,6 +40,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1648701572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 93279857441919265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 910e07a389474b14aae3e7e7dbbe1722, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 6
+  currentHealth: 0
+  canBeHurt: 1
+  isDead: 0
+  healthHost: {fileID: 93279857441919265}
+  score: 100
 --- !u!114 &8552795188017438434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,7 +254,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.07394245, y: -0.003561899}
+  m_Offset: {x: 0.07394245, y: -0.0055704117}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -247,7 +265,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.20212808, y: 0.6513692}
+  m_Size: {x: 0.20212808, y: 0.6553862}
   m_EdgeRadius: 0
 --- !u!114 &478591561996602392
 MonoBehaviour:
@@ -263,7 +281,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 2494992842494996578}
   dust: {fileID: 5933822466667834035}
-  audio: {fileID: 0}
   rb: {fileID: 609926947841172182}
   groundLayer:
     serializedVersion: 2
@@ -277,7 +294,7 @@ MonoBehaviour:
   bc: {fileID: 93279857441919264}
   weapon: {fileID: 6826983233701625308}
   speed: 6
-  jumpingPower: 8
+  jumpingPower: 10
   isFacingRight: 1
   isDisabled: 0
 --- !u!95 &2494992842494996578
@@ -299,24 +316,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1648701572
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 93279857441919265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 910e07a389474b14aae3e7e7dbbe1722, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 6
-  currentHealth: 0
-  canBeHurt: 1
-  isDead: 0
-  healthHost: {fileID: 93279857441919265}
-  score: 100
 --- !u!58 &6826983233701625308
 CircleCollider2D:
   m_ObjectHideFlags: 0

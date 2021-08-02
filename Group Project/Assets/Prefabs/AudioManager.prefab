@@ -86,3 +86,9 @@ MonoBehaviour:
     pitch: 1
     loop: 1
     source: {fileID: 0}
+  - name: Rune
+    clip: {fileID: 8300000, guid: 67c187fea1515804da93a6f7cf34d9fa, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
